@@ -4,7 +4,7 @@ block_cipher = None
 
 
 a = Analysis(['comictagger.py'],
-             binaries=[('./libunrar.so', './')],
+             binaries=[('./unrar/libunrar.so', './')],
              datas=[('comictaggerlib/ui/*.ui', 'ui'), ('comictaggerlib/graphics', 'graphics')],
              hiddenimports=['PIL'],
              hookspath=[],
@@ -30,3 +30,11 @@ coll = COLLECT(exe,
                strip=False,
                upx=True,
                name='comictagger')
+
+app = BUNDLE(coll,
+            name='ComicTagger.app',
+            icon='mac/app.icns',
+            info_plist={
+                'NSHighResolutionCapable': 'True'
+            },
+            bundle_identifier=None)
